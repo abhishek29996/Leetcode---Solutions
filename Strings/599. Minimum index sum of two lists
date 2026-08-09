@@ -1,0 +1,29 @@
+def find_restaurants(list1, list2):
+    freq = {}
+
+    # Store index of each restaurant from list1
+    for i, val1 in enumerate(list1):
+        freq[val1] = i
+
+    least_idx = float('inf')
+    res = []
+
+    # Find common restaurants with minimum index sum
+    for j, val2 in enumerate(list2):
+        if val2 in freq:
+            curr_idx = freq[val2] + j
+
+            if curr_idx < least_idx:
+                least_idx = curr_idx
+                res = [val2]
+
+            elif curr_idx == least_idx:
+                res.append(val2)
+
+    return res
+
+# Example
+list1 = ["Shogun", "Tapioca Express", "Burger King", "KFC"]
+list2 = ["KFC", "Shogun", "Burger King"]
+
+find_restaurants(list1, list2)
