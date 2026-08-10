@@ -1,0 +1,20 @@
+class Solution:
+    def findDuplicate(self, paths: List[str]) -> List[List[str]]:
+        freq = {}
+
+        for part in paths:
+            j = part.split()
+            directory = j[0]
+
+            for i in j[1:]:
+                idx = i.index("(")
+                filename = i[:idx]
+                fullpath = directory + "/" + filename
+                content = i[idx + 1:-1]
+
+                if content in freq:
+                    freq[content].append(fullpath)
+                else:
+                    freq[content] = [fullpath]
+
+        return [files for files in freq.values() if len(files) > 1]
