@@ -1,0 +1,17 @@
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+
+        up = down = left = right = 0
+
+        for move in moves:
+
+            if move == "U":
+                up += 1
+            elif move == "D":
+                down += 1
+            elif move == "L":
+                left += 1
+            elif move == "R":
+                right += 1
+
+        return up == down and left == right
