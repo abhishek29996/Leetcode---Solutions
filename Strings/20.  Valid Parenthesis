@@ -1,0 +1,23 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        result = []
+
+        text = {
+            ")": "(",
+            "]": "[",
+            "}": "{"
+        }
+
+        for j in s:
+            if j not in text:
+                result.append(j)
+            else:
+                if not result:
+                    return False
+
+                if result[-1] == text[j]:
+                    result.pop()
+                else:
+                    return False
+
+        return True if not result else False
