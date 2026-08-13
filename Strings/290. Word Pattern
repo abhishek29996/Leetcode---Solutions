@@ -1,0 +1,27 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        res = s.split()
+
+        if len(res) != len(pattern):
+            return False
+
+        ch_to_wrd = {}
+        wrd_to_ch = {}
+
+        for j in range(len(pattern)):
+            ch = pattern[j]
+            word = res[j]
+
+            if ch in ch_to_wrd:
+                if ch_to_wrd[ch] != word:
+                    return False
+            else:
+                ch_to_wrd[ch] = word
+
+            if word in wrd_to_ch:
+                if wrd_to_ch[word] != ch:
+                    return False
+            else:
+                wrd_to_ch[word] = ch
+
+        return True
