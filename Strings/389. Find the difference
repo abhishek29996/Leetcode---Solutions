@@ -1,0 +1,17 @@
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+
+        freq = {}
+
+        for j in s:
+            if j in freq:
+                freq[j] += 1
+            else:
+                freq[j] = 1
+
+        for ch in t:
+            if ch not in freq or freq[ch] == 0:
+                return ch
+                break
+
+            freq[ch] -= 1
