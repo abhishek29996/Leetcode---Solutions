@@ -1,0 +1,26 @@
+def reorderLogFiles(logs):
+    digit = []
+    letter = []
+
+    for j in logs:
+        word = j.split()
+
+        if word[1].isdigit():
+            digit.append(j)
+        else:
+            letter.append(j)
+
+    def word_sort(word):
+        classic = word.split()
+        identifier = classic[0]
+        content = " ".join(classic[1:])
+        return (content, identifier)
+
+    letter.sort(key=word_sort)
+
+    return letter + digit
+
+
+logs = ["dig1 8 1 5 1", "let1 art can", "dig2 3 6", "let2 own kit dig", "let3 art zero"]
+
+print(reorderLogFiles(logs))
