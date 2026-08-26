@@ -1,0 +1,21 @@
+class Solution:
+    def shortestCompletingWord(self, licensePlate: str, words: List[str]) -> str:
+
+        freq = {}
+        ans = ""
+        for al in licensePlate :
+            al = al.lower()
+            if al.isalpha():
+                freq[al] = freq.get(al , 0) + 1
+
+        for word in words :
+            temp = freq.copy()
+
+            for char in word :
+                if char in temp and temp[char] > 0 :
+                    temp[char] -= 1
+
+            if sum(temp.values()) == 0 :
+                if ans == "" or len(word) < len(ans) :
+                    ans = word
+        return ans
