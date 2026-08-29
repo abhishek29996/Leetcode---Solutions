@@ -1,0 +1,19 @@
+class Solution:
+    def frequencySort(self, s: str) -> str:
+
+        freq = {}
+
+        for char in s :
+            freq[char] = freq.get(char , 0) + 1
+
+        # or
+        # freq = Counter(s)
+        # Sort characters by frequency (descending), then build the string
+        # return ''.join(char * freq[char] for char in sorted(freq, key=freq.get, reverse=True))
+
+        res = ""
+
+        for key , count  in sorted(freq.items() , key = lambda  x:x[1] , reverse = True):
+            res += key * count
+
+        return res
