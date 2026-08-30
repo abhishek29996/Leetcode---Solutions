@@ -1,0 +1,26 @@
+class Solution:
+    def findRelativeRanks(self, score: List[int]) -> List[str]:
+
+        freq = {}
+
+        for idx , val in enumerate(score) :
+            freq[val] = idx
+
+        score.sort()
+        res = [""]*len(score)
+
+        for i in range(len(score)-1,-1,-1) :
+
+            rank = len(score)-i
+            idx = freq[score[i]]
+
+            if rank == 1 :
+                res[idx] = "Gold Medal"
+            elif rank == 2 :
+                res[idx] = "Silver Medal"
+            elif rank == 3 :
+                res[idx] = "Bronze Medal"
+
+            else :
+                res[idx] = str(rank)
+        return res
