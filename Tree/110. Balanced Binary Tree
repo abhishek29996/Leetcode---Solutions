@@ -1,0 +1,19 @@
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+
+        def dfs(node):
+            if not node:
+                return 0
+
+            left_root = dfs(node.left)
+            right_root = dfs(node.right)
+
+            if left_root == -1 or right_root == -1:
+                return -1
+
+            if abs(left_root - right_root) > 1:
+                return -1
+
+            return 1 + max(left_root, right_root)
+
+        return dfs(root) != -1
